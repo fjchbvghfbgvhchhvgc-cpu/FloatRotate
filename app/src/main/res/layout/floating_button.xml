@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="56dp"
+    android:layout_height="56dp"
+    android:background="@drawable/floating_button_bg"
+    android:clickable="true"
+    android:focusable="true">
+
+    <ImageView
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_gravity="center"
+        android:src="@android:drawable/ic_menu_rotate"
+        android:tint="#FFFFFFFF"
+        android:contentDescription="切换方向" />
+
+</FrameLayout>

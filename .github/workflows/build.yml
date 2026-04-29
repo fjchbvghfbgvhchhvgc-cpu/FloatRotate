@@ -1,42 +1,41 @@
-ame: Build APK                                                                                                                                                                 
+name: Build APK                                                 
                                                                                                                                                                                   
   on:                                                             
     push:
     workflow_dispatch:
-                                                                                                                                                                                  
+
   jobs:
-    build:                                                                                                                                                                        
-      runs-on: ubuntu-latest                                      
+    build:
+      runs-on: ubuntu-latest                                                                                                                                                      
       steps:
-        - name: Checkout
-          uses: actions/checkout@v4
-                                                                                                                                                                                  
+        - name: Checkout                                                                                                                                                          
+          uses: actions/checkout@v4                               
+
         - name: Set up JDK 17
-          uses: actions/setup-java@v4                                                                                                                                             
-          with:                                                   
+          uses: actions/setup-java@v4
+          with:                                                                                                                                                                   
             distribution: 'temurin'
             java-version: '17'                                                                                                                                                    
-  
+                                                                  
         - name: Set up Android SDK                                                                                                                                                
-          uses: android-actions/setup-android@v3                  
+          uses: android-actions/setup-android@v3
           with:                                                                                                                                                                   
             packages: 'platforms;android-34 build-tools;34.0.0 platform-tools'
                                                                                                                                                                                   
-        - name: Generate Gradle Wrapper                           
+        - name: Generate Gradle Wrapper                                                                                                                                           
           run: gradle wrapper --gradle-version 8.5                                                                                                                                
                                                                                                                                                                                   
-        - name: Build debug APK
-          run: ./gradlew assembleDebug --no-daemon                                                                                                                                
-                                                                  
-        - name: Rename APK
-          run: |
-            mkdir -p out                                                                                                                                                          
-            cp app/build/outputs/apk/debug/app-debug.apk out/FloatRotate-debug.apk
+        - name: Build debug APK                                   
+          run: ./gradlew assembleDebug --no-daemon
                                                                                                                                                                                   
-        - name: Upload APK artifact                               
+        - name: Rename APK
+          run: |                                                                                                                                                                  
+            mkdir -p out                                          
+            cp app/build/outputs/apk/debug/app-debug.apk out/FloatRotate-debug.apk                                                                                                
+                                                                                                                                                                                  
+        - name: Upload APK artifact                                                                                                                                               
           uses: actions/upload-artifact@v4                                                                                                                                        
           with:                                                   
             name: FloatRotate-debug-apk
-            path: out/FloatRotate-debug.apk                                                                                                                                       
-            retention-days: 30
-
+            path: out/FloatRotate-debug.apk
+            retention-days: 30                   
